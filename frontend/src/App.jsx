@@ -26,12 +26,19 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<SignIn onSignIn={() => setIsAuthenticated(true)} />} />
+        <Route
+          path="/"
+          element={
+            isAuthenticated ? 
+              <Navigate to="/facebook" replace /> : 
+              <SignIn onSignIn={() => setIsAuthenticated(true)} />
+          }
+        />
         <Route 
           path="/signin" 
           element={
             isAuthenticated ? 
-              <Navigate to="/dashboard" replace /> : 
+              <Navigate to="/facebook" replace /> : 
               <SignIn onSignIn={() => setIsAuthenticated(true)} />
           } 
         />
