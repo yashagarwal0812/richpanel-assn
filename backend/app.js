@@ -24,6 +24,7 @@ app.get('/ping', (req, res) => res.status(200).send('pong'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/facebook', require('./routes/facebook'));
 app.use('/api/messages', require('./routes/messages'));
+app.use('/api/conversation', require('./routes/conversation'));
 app.use('/webhook', require('./routes/webhook'));
 
 module.exports = app;

@@ -1,0 +1,140 @@
+/* Dashboard.css */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+.left-pane {
+  width: 80px;
+  background-color: #0046AD;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.left-pane .logo {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.left-pane .icon {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.left-pane .icon.selected {
+  background-color: #003688;
+}
+
+.conversations-pane {
+  flex: 1;
+  background-color: white;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.conversations-pane h2 {
+  margin-bottom: 20px;
+}
+
+.conversation-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.conversation-item:hover {
+  background-color: #f9f9f9;
+}
+
+.chat-pane {
+  flex: 2;
+  background-color: white;
+  padding: 20px;
+}
+
+.chat-pane h2 {
+  margin-bottom: 20px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.message.user {
+  align-self: flex-end;
+  background-color: #e0f7fa;
+}
+
+.message.other {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+}
+
+.message .profile-pic {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.info-pane {
+  width: 200px;
+  background-color: white;
+  padding: 20px;
+  border-left: 1px solid #ddd;
+}
+
+.info-pane .profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.chat-pane {
+  flex: 2;
+  background-color: white;
+  padding: 20px;
+}
+
+/* Adjusting the send-message section to ensure proper positioning */
+.send-message {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed; /* Changed from absolute to fixed */
+  bottom: 0; /* Ensures it stays at the bottom of the viewport */
+  width: 100%; /* Full width */
+  padding: 10px; /* Add padding */
+  background-color: #f9f9f9; /* Background color */
+  border-top: 1px solid #ddd; /* Optional border */
+}
+
+/* Adding styles for send-message input and button */
+.send-message input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.send-message button {
+  width: 20%;
+  padding: 10px;
+  background-color: #0046AD;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

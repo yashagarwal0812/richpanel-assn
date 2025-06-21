@@ -96,7 +96,6 @@ exports.getInfo = async (req, res) => {
             userId: req.user.id,
             pageId: user.fbPage.pageId
         })
-        console.log("Hello");
         if(!page) res.status(404).json({error: 'page not in database'});
         res.status(200).json({isConnected: true, name: page.pageName});
     }

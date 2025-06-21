@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { ConnectForm } from './pages/ConnectForm';
 import { ConnectList } from './pages/ConnectList';
+import { Dashboard } from './pages/Dashboard';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -30,7 +31,7 @@ function App() {
           path="/signin" 
           element={
             isAuthenticated ? 
-              <Navigate to="/facebook" replace /> : 
+              <Navigate to="/dashboard" replace /> : 
               <SignIn onSignIn={() => setIsAuthenticated(true)} />
           } 
         />
@@ -68,7 +69,17 @@ function App() {
             isAuthenticated ? (
               <ConnectList />
             ) : (
-              <Navigate to="/facebook" replace />
+              <Navigate to="/signin" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/dashboard" 
+          element={
+            isAuthenticated ? (
+              <Dashboard />
+            ) : (
+              <Navigate to="/signin" replace />
             )
           } 
         />

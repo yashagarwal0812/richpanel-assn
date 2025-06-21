@@ -14,11 +14,19 @@ export function Facebook() {
         const token = localStorage.getItem("token");
         if(!token) return;
         const fetchInfo = async () => {
-            const response = await getInfo(token);
-            if(response.isConnected){
-                setIsConnected(true);
-                setPageName(response.name);
+            try{
+                const response = await getInfo(token);
+                if(response.isConnected){
+                    setIsConnected(true);
+                    setPageName(response.name);
+                }
+            } catch (error) {
+            console.error("Error fetching info:", error);
+            if (error.response && error.response.status === 401) {
+                localStorage.removeItem("token");
+                navigate("/signin");
             }
+        }
         };
         fetchInfo();
     }, []); // Add empty dependency array to ensure it runs only once
@@ -28,7 +36,7 @@ export function Facebook() {
       const API_URL = import.meta.env.VITE_BACKEND_URL;
       const token = localStorage.getItem("token");
       if(!token) return;
-      const response = await axios.get(`${API_URL}/api/facebook/disconnect`, {
+      await axios.get(`${API_URL}/api/facebook/disconnect`, {
             headers: {
                 Authorisation: `${token}`,
             },

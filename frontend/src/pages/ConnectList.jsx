@@ -26,6 +26,10 @@ export function ConnectList() {
       navigate("/facebook");
     } catch (error) {
       console.error("Error sending data:", error);
+      if (error.response && error.response.status === 401) {
+        localStorage.removeItem("token");
+        navigate("/signin");
+      }
     }
   };
 
