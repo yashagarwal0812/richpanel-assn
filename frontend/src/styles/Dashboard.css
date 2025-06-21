@@ -34,12 +34,13 @@
 .conversations-pane {
   flex: 1;
   background-color: white;
-  padding: 20px;
   border-right: 1px solid #ddd;
 }
 
 .conversations-pane h2 {
-  margin-bottom: 20px;
+  margin: 0;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
 }
 
 .conversation-item {
@@ -53,18 +54,23 @@
 }
 
 .chat-pane {
+  position: relative;
   flex: 2;
-  background-color: white;
-  padding: 20px;
+  background-color: white; /* Add vertical scrolling */ /* Adjust height to fit within the viewport */
 }
 
 .chat-pane h2 {
+  margin: 0;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
   margin-bottom: 20px;
 }
 
 .messages {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  max-height: 81vh;
 }
 
 .message {
@@ -75,11 +81,13 @@
 
 .message.user {
   align-self: flex-end;
+  margin-right: 20px;
   background-color: #e0f7fa;
 }
 
 .message.other {
   align-self: flex-start;
+  margin-left: 20px;
   background-color: #f1f1f1;
 }
 
@@ -102,18 +110,14 @@
   margin-bottom: 10px;
 }
 
-.chat-pane {
-  flex: 2;
-  background-color: white;
-  padding: 20px;
-}
 
 /* Adjusting the send-message section to ensure proper positioning */
 .send-message {
   display: flex;
   align-items: center;
+  box-sizing: border-box;
   justify-content: space-between;
-  position: fixed; /* Changed from absolute to fixed */
+  position: absolute; /* Changed from absolute to fixed */
   bottom: 0; /* Ensures it stays at the bottom of the viewport */
   width: 100%; /* Full width */
   padding: 10px; /* Add padding */
@@ -137,4 +141,5 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 10px;
 }

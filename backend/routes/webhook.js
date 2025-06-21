@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Conversation = require('../models/Conversation');
 const FacebookConnection = require('../models/FacebookConnection');
+const axios = require('axios');
 
 router.get('/', (req, res) => {
   const VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;

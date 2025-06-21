@@ -1,15 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import '../styles/Dashboard.css';
 
 export function Dashboard() {
   const [selectedConversation, setSelectedConversation] = useState(null);
-  const [conversations] = useState([
-    { id: 1, name: "John Doe", messages: [{ sender: "John", text: "Hello!", time: "10:00 AM" }, { sender: "John", text: "Hello!", time: "10:00 AM" }, { sender: "You", text: "Hi!", time: "10:01 AM" }, { sender: "John", text: "Hello!", time: "10:00 AM" }, { sender: "You", text: "Hi!", time: "10:01 AM" }] },
-    { id: 2, name: "Jane Smith", messages: [{ sender: "Jane", text: "How are you?", time: "11:00 AM" }, { sender: "You", text: "Good, thanks!", time: "11:01 AM" }] },
-  ]);
-
+  const [conversations, setConversations] = useState([]);
   const [selectedIcon, setSelectedIcon] = useState("chat");
   const [newMessage, setNewMessage] = useState("");
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    const fetchConversations = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/conversation`, {
+          headers: {
+            Authorisation: localStorage.getItem("token"),
+          },
+        });
+        const formattedConversations = response.data.map((conversation) => ({
+          id: conversation.psid,
+          name: conversation.psid,
+          messages: conversation.messages.map((message) => ({
+            sender: message.direction === "inbound" ? "Other" : "You",
+            text: message.text,
+            time: new Date(message.timestamp).toLocaleTimeString(),
+          })),
+        }));
+        setConversations(formattedConversations);
+      } catch (error) {
+        console.error("Error fetching conversations:", error);
+      }
+    };
+
+    fetchConversations();
+  }, []);
+
+  useEffect(() => {
+    // Scroll to the bottom of the messages when a new message is sent
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [selectedConversation?.messages]);
 
   const handleConversationClick = (conversation) => {
     setSelectedConversation(conversation);
@@ -17,12 +48,36 @@ export function Dashboard() {
 
   const handleSendMessage = () => {
     if (newMessage.trim() && selectedConversation) {
-      const updatedMessages = [
-        ...selectedConversation.messages,
-        { sender: "You", text: newMessage, time: new Date().toLocaleTimeString() },
-      ];
-      setSelectedConversation({ ...selectedConversation, messages: updatedMessages });
-      setNewMessage("");
+      const messageData = {
+        recipientId: selectedConversation.id,
+        messageText: newMessage,
+      };
+
+      axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/messages/send`, messageData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorisation: localStorage.getItem("token"),
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            const updatedMessages = [
+              ...selectedConversation.messages,
+              { sender: "You", text: newMessage, time: new Date().toLocaleTimeString() },
+            ];
+            setSelectedConversation({ ...selectedConversation, messages: updatedMessages });
+            setNewMessage("");
+          } else {
+            console.error("Error sending message:", response.statusText);
+          }
+        })
+        .catch((error) => console.error("Error sending message:", error));
+    }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSendMessage();
     }
   };
 
@@ -86,14 +141,16 @@ export function Dashboard() {
         {selectedConversation ? (
           <>
             <h2>{selectedConversation.name}</h2>
-            <div className="messages">
+            <div className="messages" style={{ overflowY: "auto", maxHeight: "calc(100vh - 150px)" }}>
               {renderMessages(selectedConversation.messages)}
+              <div ref={messagesEndRef} />
             </div>
             <div className="send-message">
               <input
                 type="text"
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
+                onKeyPress={handleKeyPress}
                 placeholder="Type your message..."
                 className="send-message-input"
               />
