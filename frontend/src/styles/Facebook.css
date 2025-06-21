@@ -1,0 +1,61 @@
+/* Facebook Page Integration Styles */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0046AD;
+}
+
+.signup-box {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.signup-box h1 {
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #111827;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.signup-box button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.signup-box button.connect {
+  background-color: #0046AD;
+  color: white;
+}
+
+.signup-box button.connect:hover {
+  background-color: #003688;
+}
+
+.signup-box button.delete {
+  background-color: rgb(215, 0, 0);
+  color: white;
+}
+
+.signup-box button.delete:hover {
+  background-color: darkred;
+}
+
+.signup-box .button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

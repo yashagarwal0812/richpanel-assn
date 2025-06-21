@@ -1,0 +1,60 @@
+/* ConnectForm.css */
+
+.connectform-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0046AD;
+}
+
+.connectform-box {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.connectform-box h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #111827;
+}
+
+.connectform-box label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.connectform-box input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.connectform-box button {
+  width: 100%;
+  background-color: #0046AD;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.connectform-box button:hover {
+  background-color: #003688;
+}
