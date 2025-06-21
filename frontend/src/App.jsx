@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { SignIn } from './pages/SignIn';
-import { SignUp } from './pages/SignUp';
+import { SignUp } from './pages/SIgnUp';
 import { Facebook } from './pages/Facebook';
 import { useState, useEffect } from 'react';
 import './App.css';
