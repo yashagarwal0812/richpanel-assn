@@ -5,31 +5,36 @@
 }
 
 .left-pane {
-  width: 80px;
+  width: 70px;
   background-color: #0046AD;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
 }
 
 .left-pane .logo {
   color: white;
   font-size: 18px;
-  margin-bottom: 20px;
+  margin: 20px;
+  width: 30px;
+  height: 30px;
 }
 
 .left-pane .icon {
   width: 100%;
   text-align: center;
-  padding: 10px;
+  padding: 20px 20px;
+  /* margin: 0px 20px; */
   color: white;
   cursor: pointer;
 }
 
 .left-pane .icon.selected {
-  background-color: #003688;
+  background-color: #fff;
+  color: #0046AD;
 }
+
+/* .left-pane .icon.selected */
 
 .conversations-pane {
   flex: 1;
@@ -37,20 +42,46 @@
   border-right: 1px solid #ddd;
 }
 
-.conversations-pane h2 {
+.conversations-pane h2{
+  margin: 0;
+}
+
+.conversations-pane .heading {
   margin: 0;
   padding: 20px;
   border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.conversations-pane .heading .refresh{
+    box-sizing: border-box;
+    display: inline-block;
 }
 
 .conversation-item {
   padding: 10px;
   border-bottom: 1px solid #ddd;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.conversation-item svg{
+    border-radius: 50%;
 }
 
 .conversation-item:hover {
-  background-color: #f9f9f9;
+  background-color: #e0e0e0;
+}
+
+.conversation-item.selected {
+  background-color: #f0f0f0; /* Grey background for selected conversation */
 }
 
 .chat-pane {
@@ -81,19 +112,49 @@
 
 .message.user {
   align-self: flex-end;
-  margin-right: 20px;
+  margin-right: 45px;
   background-color: #e0f7fa;
 }
 
 .message.other {
   align-self: flex-start;
-  margin-left: 20px;
+  margin-left: 45px;
   background-color: #f1f1f1;
 }
 
-.message .profile-pic {
-  font-size: 12px;
-  margin-top: 5px;
+.message-info {
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.profile-pic-svg{
+    position: relative;
+}
+
+.profile-pic-svg svg{
+    position: absolute;
+    border-radius: 50%;
+}
+
+.profile-pic-svg.other svg{
+    left: -45px;
+}
+
+.profile-pic-svg.user svg{
+    right: -45px;
+}
+
+.message-info.user {
+  align-self: flex-end;
+  margin-right: 45px;
+}
+
+.message-info.other {
+  align-self: flex-start;
+  margin-left: 45px;
 }
 
 .info-pane {
