@@ -84,7 +84,7 @@ function App() {
           path="/dashboard" 
           element={
             isAuthenticated ? (
-              <Dashboard />
+              <Dashboard onLogout={handleLogout} />
             ) : (
               <Navigate to="/signin" replace />
             )

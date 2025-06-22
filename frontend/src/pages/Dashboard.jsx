@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import '../styles/Dashboard.css';
 
-export function Dashboard() {
+export function Dashboard({ onLogout }) {
   const navigate = useNavigate();
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [conversations, setConversations] = useState([]);
@@ -126,6 +126,7 @@ export function Dashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    onLogout(); // Update isAuthenticated in App.jsx
     navigate("/signin", { replace: true });
   };
 
