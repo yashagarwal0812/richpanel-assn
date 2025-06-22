@@ -11,6 +11,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  border-right: 1px solid #ddd;
 }
 
 .left-pane .menu-items{
@@ -45,6 +46,7 @@
 .left-pane .icon.selected {
   background-color: #fff;
   color: #0046AD;
+  border-right: 1px solid #ddd;
 }
 
 /* .left-pane .icon.selected */
@@ -72,6 +74,7 @@
 .conversations-pane .heading .refresh{
     box-sizing: border-box;
     display: inline-block;
+    cursor: pointer;
 }
 
 .conversation-item {
