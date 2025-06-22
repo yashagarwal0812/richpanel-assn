@@ -5,6 +5,7 @@ import '../styles/ConnectForm.css';
 
 export function ConnectForm() {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     appId: "",
     appSecret: "",
@@ -25,6 +26,7 @@ export function ConnectForm() {
       );
       navigate("/connection", { state: response.data });
     } catch (error) {
+        setErrorMessage("Failed to connect. Please check your input values.");
       console.error("Connection failed:", error);
     }
   };
@@ -40,6 +42,11 @@ export function ConnectForm() {
     <div className="connectform-container">
       <div className="connectform-box">
         <h1>Connect Form</h1>
+        {errorMessage && (
+          <div className="alert alert-danger" role="alert">
+            {errorMessage}
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
           <label htmlFor="appId">App ID</label>
           <input
