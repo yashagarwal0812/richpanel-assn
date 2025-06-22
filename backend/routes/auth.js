@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
   const user = new User({ name, email, password: hashed });
   await user.save();
   const payload = { user: { id: user.id } };
-  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '12h' });
   res.status(201).json({ token });
 });
 
@@ -26,7 +26,7 @@ router.post('/login', async (req, res) => {
   if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
 
   const payload = { user: { id: user.id } };
-  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '12h' });
   res.json({ token });
 });
 

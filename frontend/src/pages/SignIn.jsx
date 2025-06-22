@@ -9,6 +9,7 @@ export function SignIn({ onSignIn }) {
     email: "",
     password: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +28,7 @@ export function SignIn({ onSignIn }) {
         navigate("/");
       }
     } catch (error) {
-      console.error("Signin failed:", error);
+      setErrorMessage("Invalid credentials. Please try again.");
     }
   };
 
@@ -42,6 +43,7 @@ export function SignIn({ onSignIn }) {
     <div className="signup-container">
       <div className="signup-box">
         <h1>Login to your account</h1>
+        {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">Email</label>
           <input
