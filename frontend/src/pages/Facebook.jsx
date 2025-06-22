@@ -29,7 +29,7 @@ export function Facebook() {
         }
         };
         fetchInfo();
-    }, []); // Add empty dependency array to ensure it runs only once
+    }, []); // Add 'navigate' to the dependency array
 
     const handleDeleteIntegration = async () => {
       // Logic for deleting the integration
@@ -54,6 +54,11 @@ export function Facebook() {
       navigate('/connectform');
     };
 
+    const handleLogout = () => {
+      localStorage.removeItem("token");
+      navigate('/signin', { replace: true });
+    };
+
     return (
         <div className="signup-container">
           <div className="signup-box">
@@ -69,6 +74,7 @@ export function Facebook() {
             ) : (
               <button className="connect" onClick={connectPage}>Connect Page</button>
             )}
+            <button onClick={handleLogout} className="logout-button">Logout</button>
           </div>
         </div>
     )

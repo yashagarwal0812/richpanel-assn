@@ -11,3 +11,26 @@ h1 {
 .container {
   padding: 20px;
 }
+
+/* Add styles for the info button */
+.info-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: #ff6103;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.info-button:hover {
+  background-color: #cd3700;
+}

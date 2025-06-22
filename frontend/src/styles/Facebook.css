@@ -59,3 +59,7 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.logout-button{
+    margin-top: 10px;
+}
